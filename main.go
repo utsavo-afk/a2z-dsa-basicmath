@@ -19,6 +19,7 @@ func main() {
 		fmt.Println("  3 → Reverse Number(int)")
 		fmt.Println("  4 → Check Palindrome")
 		fmt.Println("  5 → Check Palindrome 2")
+		fmt.Println("  6 → Find GCD (Greatest Common Divisor)")
 		fmt.Println("  0 → Exit")
 		fmt.Print("Enter your choice: ")
 
@@ -88,6 +89,25 @@ func main() {
 			} else {
 				fmt.Printf("❌ %d is not a palindrome.\n", num)
 			}
+		case 6:
+			fmt.Println("\n🧮 Find GCD (Greatest Common Divisor)")
+			fmt.Print("Enter first number: ")
+			scanner.Scan()
+			num1, err := strconv.Atoi(strings.TrimSpace(scanner.Text()))
+			if err != nil {
+				fmt.Println("❌ Invalid number.")
+				continue
+			}
+			fmt.Print("Enter second number: ")
+			scanner.Scan()
+			num2, err := strconv.Atoi(strings.TrimSpace(scanner.Text()))
+			if err != nil {
+				fmt.Println("❌ Invalid number.")
+				continue
+			}
+			gcd := FindGCD(num1, num2)
+			fmt.Printf("The GCD of %d and %d is: %d\n", num1, num2, gcd)
+
 		case 0:
 			fmt.Println("👋 Exiting BasicMathFuncs CLI. Goodbye!")
 			return

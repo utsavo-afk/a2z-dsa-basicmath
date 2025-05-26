@@ -67,3 +67,13 @@ func CheckPalindrome2(n int) bool {
 		return false
 	}
 }
+
+func FindGCD(a, b int) int {
+	gcd := 1
+	for i := 1; i <= min(a, b); i++ {
+		if a%i == 0 && b%i == 0 {
+			gcd = i
+		}
+	}
+	return gcd
+}
