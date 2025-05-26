@@ -20,6 +20,10 @@ func main() {
 		fmt.Println("  4 → Check Palindrome")
 		fmt.Println("  5 → Check Palindrome 2")
 		fmt.Println("  6 → Find GCD (Greatest Common Divisor)")
+		fmt.Println("  7 → Check Armstrong Number")
+		fmt.Println("  8 → Find Divisors")
+		fmt.Println("  9 → Find Divisors (optimized)")
+		fmt.Println(" 10 → Check Prime Number")
 		fmt.Println("  0 → Exit")
 		fmt.Print("Enter your choice: ")
 
@@ -107,7 +111,72 @@ func main() {
 			}
 			gcd := FindGCD(num1, num2)
 			fmt.Printf("The GCD of %d and %d is: %d\n", num1, num2, gcd)
-
+		case 7:
+			fmt.Println("\n🔢 Check Armstrong Number")
+			fmt.Print("Enter a number: ")
+			scanner.Scan()
+			num, err := strconv.Atoi(strings.TrimSpace(scanner.Text()))
+			if err != nil {
+				fmt.Println("❌ Invalid number.")
+				continue
+			}
+			if CheckArmstrongNumber(num) {
+				fmt.Printf("✅ %d is an Armstrong number.\n", num)
+			} else {
+				fmt.Printf("❌ %d is not an Armstrong number.\n", num)
+			}
+		case 8:
+			fmt.Println("\n🔢 Find Divisors")
+			fmt.Print("Enter a number: ")
+			scanner.Scan()
+			num, err := strconv.Atoi(strings.TrimSpace(scanner.Text()))
+			if err != nil {
+				fmt.Println("❌ Invalid number.")
+				continue
+			}
+			fmt.Printf("Divisors of %d: ", num)
+			divisors := FindDivisors(num)
+			if len(divisors) == 0 {
+				fmt.Println("No divisors found.")
+			} else {
+				for _, divisor := range divisors {
+					fmt.Print(divisor, " ")
+				}
+				fmt.Println()
+			}
+		case 9:
+			fmt.Println("\n🔢 Find Divisors (optimized)")
+			fmt.Print("Enter a number: ")
+			scanner.Scan()
+			num, err := strconv.Atoi(strings.TrimSpace(scanner.Text()))
+			if err != nil {
+				fmt.Println("❌ Invalid number.")
+				continue
+			}
+			fmt.Printf("Divisors of %d: ", num)
+			divisors := FindDivisors2(num)
+			if len(divisors) == 0 {
+				fmt.Println("No divisors found.")
+			} else {
+				for _, divisor := range divisors {
+					fmt.Print(divisor, " ")
+				}
+				fmt.Println()
+			}
+		case 10:
+			fmt.Println("\n🔍 Check Prime Number")
+			fmt.Print("Enter a number: ")
+			scanner.Scan()
+			num, err := strconv.Atoi(strings.TrimSpace(scanner.Text()))
+			if err != nil {
+				fmt.Println("❌ Invalid number.")
+				continue
+			}
+			if CheckPrime(num) {
+				fmt.Printf("✅ %d is a prime number.\n", num)
+			} else {
+				fmt.Printf("❌ %d is not a prime number.\n", num)
+			}
 		case 0:
 			fmt.Println("👋 Exiting BasicMathFuncs CLI. Goodbye!")
 			return

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	m "math"
 	"strconv"
 )
@@ -76,4 +77,55 @@ func FindGCD(a, b int) int {
 		}
 	}
 	return gcd
+}
+
+func CheckArmstrongNumber(n int) bool {
+	dup := n
+	a := 0
+	for n > 0 {
+		ld := n % 10
+		a += int(m.Pow(float64(ld), float64(len(strconv.Itoa(dup)))))
+		fmt.Println(a)
+		n /= 10
+	}
+	if dup == a {
+		return true
+	} else {
+		return false
+	}
+}
+
+func FindDivisors(n int) []int {
+	res := []int{}
+	for i := 1; i <= n; i++ {
+		if n%i == 0 {
+			res = append(res, i)
+		}
+	}
+	return res
+}
+
+func FindDivisors2(n int) []int {
+	divisors := []int{}
+	sqrtN := int(m.Sqrt(float64(n)))
+	for i := 1; i <= sqrtN; i++ {
+		if n%i == 0 {
+			divisors = append(divisors, i)
+			if i != (n / i) {
+				divisors = append(divisors, (n / i))
+			}
+		}
+	}
+	return divisors
+}
+
+func CheckPrime(n int) bool {
+	divs := FindDivisors2(n)
+	if len(divs) > 2 {
+		return false
+	}
+	if divs[0] == 1 && divs[1] == n {
+		return true
+	}
+	return false
 }
